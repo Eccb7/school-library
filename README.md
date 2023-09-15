@@ -25,7 +25,7 @@
 
 # 📖 About the Project <a name="about-project"></a>
 
-Welcome to the **"OOP School Library"** project at OOP University! This project empowers you to harness Object Oriented Programming principles to build a sleek and efficient system for managing students, teachers, books, and borrowing records. With the help of guided projects, you can create this well-organized and beautiful library application in just 30 minutes of estimated time. Explore the project and start your journey towards mastering OOP.
+Welcome to the **"OOP School Library"** project at OOP University! This project empowers you to harness Object Oriented Programming principles to build a sleek and efficient system for managing students, teachers, books, and borrowing records. Explore the project and start your journey towards mastering OOP.
 
 ## 🛠 Built With <a name="built-with"></a>
 
