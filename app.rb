@@ -125,10 +125,16 @@ class App
       individual = @people.find { |person| person.id == person_id }
 
       print 'Enter the rental date [yyyy-mm-dd]: '
-      date = gets.chomp.to_s
-      rental = Rental.new(date, @books[book_number], individual)
-      @rentals << rental
-      puts 'Book rented successfully.'
+      date = gets.chomp
+
+      # Check if the date is in the correct format (yyyy-mm-dd)
+      if date.match?(/^\d{4}-\d{2}-\d{2}$/)
+        rental = Rental.new(@books[book_number], individual, date)
+        @rentals << rental
+        puts 'Book rented successfully.'
+      else
+        puts 'Invalid date format. Please use yyyy-mm-dd.'
+      end
     end
   end
 
