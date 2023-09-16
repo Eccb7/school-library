@@ -83,14 +83,12 @@ class App
   end
 
   def create_student(name, age)
-    print 'Grade: '
-    grade = gets.chomp
-    print 'Parent permission? [Y/N]: '
-    permission_option = gets.chomp.downcase
-    student = Student.new(grade, name, age, parent_permission: permission_option == 'y')
+    classroom = nil  # You might want to add logic to select a classroom
+    student = Student.new(age, classroom, name)
     @people << student
     puts "Student created successfully. ID is #{student.id}"
   end
+
 
   def create_teacher(name, age)
     print 'Specialization: '
