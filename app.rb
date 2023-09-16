@@ -83,12 +83,11 @@ class App
   end
 
   def create_student(name, age)
-    classroom = nil  # You might want to add logic to select a classroom
+    classroom = nil
     student = Student.new(age, classroom, name)
     @people << student
     puts "Student created successfully. ID is #{student.id}"
   end
-
 
   def create_teacher(name, age)
     print 'Specialization: '
