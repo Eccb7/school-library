@@ -121,8 +121,8 @@ class App
       book_number = gets.chomp.to_i - 1
       puts 'Enter your ID to rent the book:'
       list_people
-      person_id = gets.chomp.to_i
-      individual = @people.find { |person| person.id == person_id }
+      person_id = gets.chomp.to_i - 1
+      individual = @people[person_id]
 
       print 'Enter the rental date [yyyy-mm-dd]: '
       date = gets.chomp
