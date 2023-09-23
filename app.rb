@@ -5,40 +5,23 @@ require_relative 'student'
 require_relative 'teacher'
 
 class App
-  MENU_OPTIONS = {
-    '1' => :list_books,
-    '2' => :list_people,
-    '3' => :create_person,
-    '4' => :create_book,
-    '5' => :create_rental,
-    '6' => :list_all_rentals,
-    '7' => :exit_program
-  }.freeze
-
   def initialize
     @books = []
     @rentals = []
     @people = []
   end
 
-  def start
+  def start(menu_options, display_menu_method)
     puts 'Welcome to the School Library App!'
     loop do
-      display_menu
+      display_menu_method.call
       choice = gets.chomp
 
-      if MENU_OPTIONS.include?(choice)
-        send(MENU_OPTIONS[choice])
+      if menu_options.include?(choice)
+        send(menu_options[choice])
       else
         puts 'Invalid choice. Please try again.'
       end
-    end
-  end
-
-  def display_menu
-    puts 'Please choose an option:'
-    MENU_OPTIONS.each do |key, value|
-      puts "#{key}. #{value.to_s.tr('_', ' ')}"
     end
   end
 
