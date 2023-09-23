@@ -92,7 +92,7 @@ class App
   def create_teacher(name, age)
     print 'Specialization: '
     specialization = gets.chomp
-    teacher = Teacher.new(age, name, specialization) # Corrected the order of arguments
+    teacher = Teacher.new(age, specialization, name) # Corrected the order of arguments
     @people << teacher
     puts "Teacher created successfully. Teacher ID is #{teacher.id}"
   end
