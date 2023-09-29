@@ -19,11 +19,10 @@ class Menu
     MENU_OPTIONS.each do |key, value|
       puts "#{key}. #{value.to_s.tr('_', ' ')}"
     end
-    process_choice
+    process_choice(gets.chomp)
   end
 
-  def process_choice
-    choice = gets.chomp
+  def process_choice(choice)
     if MENU_OPTIONS.include?(choice)
       @app.send(MENU_OPTIONS[choice])
     else
@@ -35,7 +34,7 @@ class Menu
   def menu_options
     MENU_OPTIONS
   end
-end
+
   def create_person(name, age)
     print 'Would you like to create a student (1) or a teacher (2)? Select a number: '
     choice = gets.chomp
@@ -51,3 +50,4 @@ end
       display_menu
     end
   end
+end
