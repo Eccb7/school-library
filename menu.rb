@@ -32,6 +32,10 @@ class Menu
     end
   end
 
+  def menu_options
+    MENU_OPTIONS
+  end
+
   def create_person(name, age)
     print 'Would you like to create a student (1) or a teacher (2)? Select a number: '
     choice = gets.chomp
