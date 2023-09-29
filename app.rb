@@ -3,22 +3,24 @@ require_relative 'person'
 require_relative 'rental'
 require_relative 'student'
 require_relative 'teacher'
+require_relative 'menu'
 
 class App
   def initialize
     @books = []
     @rentals = []
     @people = []
+    @menu = Menu.new(self)
   end
 
-  def start(menu_options, display_menu_method)
+  def start
     puts 'Welcome to the School Library App!'
     loop do
-      display_menu_method.call
+      @menu.display_menu
       choice = gets.chomp
 
-      if menu_options.include?(choice)
-        send(menu_options[choice])
+      if @menu.menu_options.include?(choice)
+        send(@menu.menu_options[choice])
       else
         puts 'Invalid choice. Please try again.'
       end
@@ -47,13 +49,15 @@ class App
     end
   end
 
-  def create_person
-    print 'Would you like to create a student (1) or a teacher (2)? Select a number: '
-    choice = gets.chomp
-    print 'Name: '
-    name = gets.chomp
-    print 'Age: '
-    age = gets.chomp.to_i
+  def create_person(name = nil, age = nil)
+    if name.nil? && age.nil?
+      print 'Would you like to create a student (1) or a teacher (2)? Select a number: '
+      choice = gets.chomp
+      print 'Name: '
+      name = gets.chomp
+      print 'Age: '
+      age = gets.chomp.to_i
+    end
 
     case choice
     when '1'
@@ -63,6 +67,8 @@ class App
     else
       puts 'Invalid choice. Please try again.'
     end
+
+    start
   end
 
   def create_student(name, age)
@@ -75,7 +81,7 @@ class App
   def create_teacher(name, age)
     print 'Specialization: '
     specialization = gets.chomp
-    teacher = Teacher.new(age, specialization, name) # Corrected the order of arguments
+    teacher = Teacher.new(age, specialization, name)
     @people << teacher
     puts "Teacher created successfully. Teacher ID is #{teacher.id}"
   end
@@ -93,6 +99,8 @@ class App
     else
       puts 'Please enter the book title and author.'
     end
+
+    start
   end
 
   def create_rental
@@ -102,7 +110,7 @@ class App
       puts 'Select a book to rent:'
       list_books
       book_number = gets.chomp.to_i - 1
-      puts 'Enter your ID to rent the book:'
+      puts 'Enter person to rent the book:'
       list_people
       person_id = gets.chomp.to_i - 1
       individual = @people[person_id]
@@ -110,7 +118,6 @@ class App
       print 'Enter the rental date [yyyy-mm-dd]: '
       date = gets.chomp
 
-      # Check if the date is in the correct format (yyyy-mm-dd)
       if date.match?(/^\d{4}-\d{2}-\d{2}$/)
         rental = Rental.new(@books[book_number], individual, date)
         @rentals << rental
@@ -119,6 +126,8 @@ class App
         puts 'Invalid date format. Please use yyyy-mm-dd.'
       end
     end
+
+    start
   end
 
   def list_all_rentals
@@ -127,7 +136,10 @@ class App
     else
       print 'Enter your ID to view rentals: '
       id = gets.chomp.to_i
-      rentals = @rentals.select { |rend| rend.person.id == id }
+      rentals = @rentals.select do |rend|
+        puts "Person object: #{rend.person.inspect}" # Debugging statement
+        rend.person.id == id
+      end
 
       if rentals.empty?
         puts 'No rental records for that ID.'
