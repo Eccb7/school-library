@@ -110,7 +110,7 @@ class App
       puts 'Select a book to rent:'
       list_books
       book_number = gets.chomp.to_i - 1
-      puts 'Enter your ID to rent the book:'
+      puts 'Enter person to rent the book:'
       list_people
       person_id = gets.chomp.to_i - 1
       individual = @people[person_id]
