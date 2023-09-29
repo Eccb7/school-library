@@ -136,7 +136,10 @@ class App
     else
       print 'Enter your ID to view rentals: '
       id = gets.chomp.to_i
-      rentals = @rentals.select { |rend| rend.person.id == id }
+      rentals = @rentals.select do |rend|
+        puts "Person object: #{rend.person.inspect}" # Debugging statement
+        rend.person.id == id
+      end
 
       if rentals.empty?
         puts 'No rental records for that ID.'
@@ -149,11 +152,6 @@ class App
         end
       end
     end
-
-    puts 'Press any key to return to the menu...'
-    gets # Wait for user input
-
-    start
   end
 
   def exit_program
