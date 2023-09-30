@@ -13,6 +13,16 @@ class Person < Nameable
     @rentals = []
   end
 
+  def to_json(*args)
+    {
+      id: @id,
+      name: @name,
+      age: @age,
+      parent_permission: @parent_permission,
+      rentals: @rentals.map(&:to_json)
+    }.to_json(*args)
+  end
+
   private
 
   def of_age?

@@ -1,0 +1,16 @@
+[
+    {
+      "id": 1,
+      "name": "John Smith",
+      "age": 25,
+      "class": "Student",
+      "rentals": []
+    },
+    {
+      "id": 2,
+      "name": "Jane Doe",
+      "age": 30,
+      "class": "Teacher",
+      "rentals": []
+    }
+  ]
