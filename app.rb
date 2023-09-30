@@ -169,19 +169,13 @@ class App
 
   def save_data_to_json
     # Save books to a JSON file
-    File.open('data/books.json', 'w') do |file|
-      file.write(JSON.dump(@books))
-    end
+    File.write('data/books.json', JSON.dump(@books))
 
     # Save people to a JSON file
-    File.open('data/people.json', 'w') do |file|
-      file.write(JSON.dump(@people))
-    end
+    File.write('data/people.json', JSON.dump(@people))
 
     # Save rentals to a JSON file
-    File.open('data/rentals.json', 'w') do |file|
-      file.write(JSON.dump(@rentals))
-    end
+    File.write('data/rentals.json', JSON.dump(@rentals))
   end
 
   def load_data_from_json
