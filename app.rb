@@ -179,35 +179,42 @@ class App
   end
 
   def load_data_from_json
-    # Load books from the books.json file if it exists
-    if File.exist?('data/books.json')
-      File.open('data/books.json', 'r') do |file|
-        book_data = JSON.parse(file.read)
-        @books = book_data.map do |book_hash|
-          Book.new(book_hash['title'], book_hash['author'])
-        end
+    load_books_from_json
+    load_people_from_json
+    load_rentals_from_json
+  end
+
+  def load_books_from_json
+    return unless File.exist?('data/books.json')
+
+    File.open('data/books.json', 'r') do |file|
+      book_data = JSON.parse(file.read)
+      @books = book_data.map do |book_hash|
+        Book.new(book_hash['title'], book_hash['author'])
       end
     end
+  end
 
-    # Load people from the people.json file if it exists
-    if File.exist?('data/people.json')
-      File.open('data/people.json', 'r') do |file|
-        person_data = JSON.parse(file.read)
-        @people = person_data.map do |person_hash|
-          Person.new(person_hash['age'], name: person_hash['name'])
-        end
+  def load_people_from_json
+    return unless File.exist?('data/people.json')
+
+    File.open('data/people.json', 'r') do |file|
+      person_data = JSON.parse(file.read)
+      @people = person_data.map do |person_hash|
+        Person.new(person_hash['age'], name: person_hash['name'])
       end
     end
+  end
 
-    # Load rentals from the rentals.json file if it exists
-    if File.exist?('data/rentals.json')
-      File.open('data/rentals.json', 'r') do |file|
-        rental_data = JSON.parse(file.read)
-        @rentals = rental_data.map do |rental_hash|
-          book = @books.find { |b| b.title == rental_hash['book_title'] }
-          person = @people.find { |p| p.id == rental_hash['person_id'] }
-          Rental.new(book, person, rental_hash['date'])
-        end
+  def load_rentals_from_json
+    return unless File.exist?('data/rentals.json')
+
+    File.open('data/rentals.json', 'r') do |file|
+      rental_data = JSON.parse(file.read)
+      @rentals = rental_data.map do |rental_hash|
+        book = @books.find { |b| b.title == rental_hash['book_title'] }
+        person = @people.find { |p| p.id == rental_hash['person_id'] }
+        Rental.new(book, person, rental_hash['date'])
       end
     end
   end
