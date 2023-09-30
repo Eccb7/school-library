@@ -15,5 +15,4 @@ RSpec.describe Rental do
       expect(rental.date).to eq(date)
     end
   end
-
 end

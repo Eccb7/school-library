@@ -14,5 +14,4 @@ RSpec.describe Teacher do
       expect(Teacher.superclass).to eq(Person)
     end
   end
-
 end

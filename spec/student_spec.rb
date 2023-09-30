@@ -23,5 +23,4 @@ RSpec.describe Student do
       expect(student.play_hooky).to eq('¯\(ツ)/¯')
     end
   end
-
 end

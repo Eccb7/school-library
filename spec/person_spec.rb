@@ -18,5 +18,4 @@ RSpec.describe Person do
       expect(underage_person.can_use_services?).to be false
     end
   end
-
 end

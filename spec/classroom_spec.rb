@@ -13,5 +13,4 @@ RSpec.describe Classroom do
       expect(classroom.students).to be_empty
     end
   end
-
 end

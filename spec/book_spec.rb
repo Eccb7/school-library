@@ -15,5 +15,4 @@ RSpec.describe Book do
       expect(book.rentals).to be_empty
     end
   end
-
 end
